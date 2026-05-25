@@ -1,0 +1,703 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DatabaseRecovery.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="1280"
+        d:DesignHeight="820"
+        x:Class="DatabaseRecovery.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        x:CompileBindings="False"
+        Width="1280"
+        Height="820"
+        MinWidth="1180"
+        MinHeight="760"
+        Background="#F4F7FB"
+        Title="数据库取证工具">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="主色刷" Color="#098EFE"/>
+        <SolidColorBrush x:Key="浅主色刷" Color="#EAF6FF"/>
+        <SolidColorBrush x:Key="正文刷" Color="#1B273E"/>
+        <SolidColorBrush x:Key="次要文字刷" Color="#888E9A"/>
+        <SolidColorBrush x:Key="边框刷" Color="#E4E9F0"/>
+        <SolidColorBrush x:Key="表头刷" Color="#F7FAFD"/>
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="Border.panel">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource 边框刷}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+        <Style Selector="Border.tool-card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource 边框刷}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="18"/>
+        </Style>
+        <Style Selector="Border.item-card">
+            <Setter Property="Background" Value="#FBFDFF"/>
+            <Setter Property="BorderBrush" Value="{StaticResource 边框刷}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="12"/>
+        </Style>
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{StaticResource 主色刷}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource 主色刷}"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="16,7"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style Selector="Button.secondary">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource 主色刷}"/>
+            <Setter Property="BorderBrush" Value="#C9DDED"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="14,7"/>
+        </Style>
+        <Style Selector="Button.text-action">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource 主色刷}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="6,4"/>
+        </Style>
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{StaticResource 正文刷}"/>
+        </Style>
+        <Style Selector="TextBlock.subtitle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{StaticResource 正文刷}"/>
+        </Style>
+        <Style Selector="TextBlock.muted">
+            <Setter Property="Foreground" Value="{StaticResource 次要文字刷}"/>
+        </Style>
+        <Style Selector="TextBlock.table-head">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#53657A"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBlock.table-cell">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="{StaticResource 正文刷}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style Selector="ComboBox">
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="48,*">
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="{StaticResource 边框刷}"
+                BorderThickness="0,0,0,1">
+            <Grid ColumnDefinitions="Auto,*,Auto" Margin="14,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
+                    <Border Background="{StaticResource 浅主色刷}"
+                            BorderBrush="#CBE8FF"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="8,4">
+                        <TextBlock Text="数据库取证工具"
+                                   Foreground="{StaticResource 正文刷}"
+                                   FontWeight="SemiBold"/>
+                    </Border>
+                    <Border Background="#20B8F0" CornerRadius="3" Padding="8,2">
+                        <TextBlock Text="{Binding 软件版本}"
+                                   Foreground="White"
+                                   FontSize="11"/>
+                    </Border>
+                    <TextBlock Text="{Binding 当前数据源提示}"
+                               Classes="muted"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Spacing="8">
+                    <Button Classes="secondary" Content="服务管理"/>
+                    <Button Classes="secondary" Content="用户中心"/>
+                    <Button Classes="secondary" Content="菜单"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <TabControl Grid.Row="1" Margin="14" Padding="0">
+            <TabItem Header="首页">
+                <Grid RowDefinitions="Auto,*" Margin="0,14,0,0">
+                    <ItemsControl ItemsSource="{Binding 工具卡片列表}" Margin="0,0,0,14">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Classes="tool-card" Width="290" Height="104" Margin="0,0,16,0">
+                                    <Grid RowDefinitions="Auto,*,Auto">
+                                        <TextBlock Text="{Binding 标题}" Classes="subtitle"/>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="{Binding 描述}"
+                                                   Classes="muted"
+                                                   TextWrapping="Wrap"
+                                                   Margin="0,6,0,8"/>
+                                        <TextBlock Grid.Row="2"
+                                                   Text="{Binding 操作提示}"
+                                                   Foreground="{StaticResource 主色刷}"
+                                                   FontSize="12"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Border Grid.Row="1" Classes="panel" Padding="14">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,12">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <TextBlock Text="历史记录" Classes="title"/>
+                                    <Button Classes="text-action" Content="清除记录"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                                    <TextBox Width="150" Watermark="开始日期"/>
+                                    <TextBox Width="150" Watermark="结束日期"/>
+                                    <TextBox Width="230" Watermark="请输入数据库名称关键字"/>
+                                    <Button Classes="primary" Content="搜索"/>
+                                    <Button Classes="secondary" Content="清空"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Border Grid.Row="1" Background="{StaticResource 表头刷}" Padding="12,9">
+                                <Grid ColumnDefinitions="2*,*,*,*,Auto">
+                                    <TextBlock Text="记录名称" Classes="table-head"/>
+                                    <TextBlock Grid.Column="1" Text="添加时间" Classes="table-head"/>
+                                    <TextBlock Grid.Column="2" Text="更新时间" Classes="table-head"/>
+                                    <TextBlock Grid.Column="3" Text="状态（数据源）" Classes="table-head"/>
+                                    <TextBlock Grid.Column="4" Text="操作" Classes="table-head"/>
+                                </Grid>
+                            </Border>
+
+                            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding 历史记录列表}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="#EEF3F8" BorderThickness="0,0,0,1" Padding="12,10">
+                                                <Grid ColumnDefinitions="2*,*,*,*,Auto">
+                                                    <TextBlock Text="{Binding 名称}" Classes="table-cell"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding 添加时间}" Classes="table-cell"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding 更新时间}" Classes="table-cell"/>
+                                                    <TextBlock Grid.Column="3" Text="{Binding 状态}" Classes="table-cell"/>
+                                                    <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="8">
+                                                        <Button Classes="text-action" Content="查看"/>
+                                                        <Button Classes="text-action" Content="更多"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="新建与预处理">
+                <Grid ColumnDefinitions="420,*" Margin="0,14,0,0">
+                    <Border Classes="panel" Padding="16" Margin="0,0,12,0">
+                        <Grid RowDefinitions="Auto,Auto,Auto,*">
+                            <TextBlock Text="添加数据库" Classes="title" Margin="0,0,0,12"/>
+                            <TabControl Grid.Row="1">
+                                <TabItem Header="关系型数据库">
+                                    <ScrollViewer Height="210" VerticalScrollBarVisibility="Auto">
+                                        <ItemsControl ItemsSource="{Binding 关系型数据库列表}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Classes="item-card" Width="178" Height="74" Margin="0,0,10,10">
+                                                        <Grid RowDefinitions="Auto,Auto,Auto">
+                                                            <TextBlock Text="{Binding 名称}" FontWeight="SemiBold"/>
+                                                            <TextBlock Grid.Row="1" Text="{Binding 版本}" Classes="muted" FontSize="11" TextWrapping="Wrap"/>
+                                                            <TextBlock Grid.Row="2" Text="{Binding 来源方式}" Foreground="{StaticResource 主色刷}" FontSize="11"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </TabItem>
+                                <TabItem Header="非关系型数据库">
+                                    <ScrollViewer Height="210" VerticalScrollBarVisibility="Auto">
+                                        <ItemsControl ItemsSource="{Binding 非关系型数据库列表}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Classes="item-card" Width="178" Height="74" Margin="0,0,10,10">
+                                                        <Grid RowDefinitions="Auto,Auto,Auto">
+                                                            <TextBlock Text="{Binding 名称}" FontWeight="SemiBold"/>
+                                                            <TextBlock Grid.Row="1" Text="{Binding 版本}" Classes="muted" FontSize="11" TextWrapping="Wrap"/>
+                                                            <TextBlock Grid.Row="2" Text="{Binding 来源方式}" Foreground="{StaticResource 主色刷}" FontSize="11"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </TabItem>
+                                <TabItem Header="日志分析">
+                                    <ItemsControl ItemsSource="{Binding 日志类型列表}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Classes="item-card" Width="178" Height="74" Margin="0,0,10,10">
+                                                    <Grid RowDefinitions="Auto,Auto,Auto">
+                                                        <TextBlock Text="{Binding 名称}" FontWeight="SemiBold"/>
+                                                        <TextBlock Grid.Row="1" Text="{Binding 版本}" Classes="muted" FontSize="11"/>
+                                                        <TextBlock Grid.Row="2" Text="{Binding 来源方式}" Foreground="{StaticResource 主色刷}" FontSize="11"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </TabItem>
+                            </TabControl>
+
+                            <Grid Grid.Row="2" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Margin="0,14,0,0">
+                                <TextBox Watermark="记录名称：mysql"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="12" Margin="0,8,0,0">
+                                    <TextBlock Text="来源：" Classes="muted" VerticalAlignment="Center"/>
+                                    <RadioButton Content="文件" IsChecked="True"/>
+                                    <RadioButton Content="文件夹"/>
+                                </StackPanel>
+                                <TextBox Grid.Row="2" Watermark="数据文件：待分析的数据库文件路径" Margin="0,8,0,0"/>
+                                <TextBox Grid.Row="3" Watermark="保存位置：D:\Program Files\Honglian\DatabaseRecovery" Margin="0,8,0,0"/>
+                                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,12,0,0">
+                                    <Button Classes="secondary" Content="取消"/>
+                                    <Button Classes="secondary" Content="上一步"/>
+                                    <Button Classes="primary" Content="下一步"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Border Grid.Row="3" Background="#F9FBFD" BorderBrush="{StaticResource 边框刷}" BorderThickness="1" CornerRadius="5" Padding="12" Margin="0,16,0,0">
+                                <Grid RowDefinitions="Auto,Auto,Auto">
+                                    <TextBlock Text="创建后流程" Classes="subtitle"/>
+                                    <TextBlock Grid.Row="1"
+                                               Text="提交数据源后进入预处理任务；任务完成后点击进入预览，再执行数据解析或导出。"
+                                               Classes="muted"
+                                               TextWrapping="Wrap"
+                                               Margin="0,8,0,10"/>
+                                    <ProgressBar Grid.Row="2" Minimum="0" Maximum="100" Value="76" Height="6"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Column="1" Classes="panel" Padding="16">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel>
+                                    <TextBlock Text="预处理任务" Classes="title"/>
+                                    <TextBlock Text="预处理任务正在执行，请耐心等待" Classes="muted" Margin="0,6,0,0"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                                    <TextBlock Text="已用时：00:00:03" Classes="muted"/>
+                                    <TextBlock Text="进度：76%" Foreground="{StaticResource 主色刷}" FontWeight="SemiBold"/>
+                                    <Button Classes="secondary" Content="取消"/>
+                                </StackPanel>
+                            </Grid>
+                            <ProgressBar Grid.Row="1" Minimum="0" Maximum="100" Value="76" Height="8" Margin="0,16,0,12"/>
+                            <Border Grid.Row="2" Background="#0F1722" CornerRadius="6" Padding="14">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <ItemsControl ItemsSource="{Binding 预处理日志列表}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding 内容}"
+                                                           Foreground="#C9D4E0"
+                                                           FontFamily="Menlo,Consolas,Monospace"
+                                                           FontSize="12"
+                                                           Margin="0,0,0,7"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="数据详情">
+                <Grid ColumnDefinitions="270,*" Margin="0,14,0,0">
+                    <Border Classes="panel" Padding="12" Margin="0,0,12,0">
+                        <Grid RowDefinitions="Auto,Auto,Auto,*">
+                            <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+                                <TextBlock Text="数据解析" Classes="subtitle"/>
+                                <Button Grid.Column="1" Classes="text-action" Content="默认排序"/>
+                            </Grid>
+                            <TextBox Grid.Row="1" Watermark="请输入表名查询"/>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="14" Margin="0,10,0,8">
+                                <CheckBox Content="全选" IsChecked="True"/>
+                                <TextBlock Text="总数：2" Classes="muted"/>
+                                <TextBlock Text="已选：2" Classes="muted"/>
+                            </StackPanel>
+                            <TreeView Grid.Row="3">
+                                <TreeViewItem Header="D:\Desktop\DatabaseRecovery" IsExpanded="True">
+                                    <TreeViewItem Header="table" IsExpanded="True">
+                                        <TreeViewItem Header="65cms_position_data (0/129)"/>
+                                        <TreeViewItem Header="chart (1/11)"/>
+                                        <TreeViewItem Header="user_profile (0/38)"/>
+                                    </TreeViewItem>
+                                </TreeViewItem>
+                            </TreeView>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Column="1" Classes="panel">
+                        <Grid RowDefinitions="Auto,*">
+                            <Border Background="#F8FBFF" BorderBrush="{StaticResource 边框刷}" BorderThickness="0,0,0,1" Padding="12">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Button Classes="primary" Content="数据查询"/>
+                                        <Button Classes="primary" Content="数据解析"/>
+                                        <Button Classes="secondary" Content="数据导出"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="2"
+                                               Text="IP地址：127.0.0.1    端口号：8568    用户名：root    密码：123456"
+                                               Classes="muted"
+                                               VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                            <TabControl Grid.Row="1" Margin="12">
+                                <TabItem Header="表记录">
+                                    <Grid RowDefinitions="Auto,*,Auto" Margin="0,10,0,0">
+                                        <Border Background="{StaticResource 表头刷}" Padding="10,8">
+                                            <Grid ColumnDefinitions="58,58,58,58,72,1.2*,80,1.2*,1.2*,70">
+                                                <TextBlock Text="状态" Classes="table-head"/>
+                                                <TextBlock Grid.Column="1" Text="行号" Classes="table-head"/>
+                                                <TextBlock Grid.Column="2" Text="编号" Classes="table-head"/>
+                                                <TextBlock Grid.Column="3" Text="子号" Classes="table-head"/>
+                                                <TextBlock Grid.Column="4" Text="表编号" Classes="table-head"/>
+                                                <TextBlock Grid.Column="5" Text="名称" Classes="table-head"/>
+                                                <TextBlock Grid.Column="6" Text="类型" Classes="table-head"/>
+                                                <TextBlock Grid.Column="7" Text="X 轴" Classes="table-head"/>
+                                                <TextBlock Grid.Column="8" Text="Y 轴" Classes="table-head"/>
+                                                <TextBlock Grid.Column="9" Text="限制" Classes="table-head"/>
+                                            </Grid>
+                                        </Border>
+                                        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                            <ItemsControl ItemsSource="{Binding 表记录列表}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border BorderBrush="#EEF3F8" BorderThickness="0,0,0,1" Padding="10,8">
+                                                            <Grid ColumnDefinitions="58,58,58,58,72,1.2*,80,1.2*,1.2*,70">
+                                                                <TextBlock Text="{Binding 状态}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="1" Text="{Binding 行号}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="2" Text="{Binding 数据编号}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="3" Text="{Binding 子编号}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="4" Text="{Binding 表编号}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="5" Text="{Binding 名称}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="6" Text="{Binding 类型}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="7" Text="{Binding 横轴}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="8" Text="{Binding 纵轴}" Classes="table-cell"/>
+                                                                <TextBlock Grid.Column="9" Text="{Binding 限制值}" Classes="table-cell"/>
+                                                            </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                        <Grid Grid.Row="2" ColumnDefinitions="*,Auto" Margin="0,10,0,0">
+                                            <ProgressBar Minimum="0" Maximum="100" Value="68" Height="4" VerticalAlignment="Center"/>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                                <ComboBox Width="90" SelectedIndex="0">
+                                                    <ComboBoxItem Content="500条/页"/>
+                                                    <ComboBoxItem Content="1000条/页"/>
+                                                </ComboBox>
+                                                <TextBlock Text="第 1 页" Classes="muted" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="表结构">
+                                    <Grid RowDefinitions="Auto,*" Margin="0,10,0,0">
+                                        <Border Background="{StaticResource 表头刷}" Padding="10,8">
+                                            <Grid ColumnDefinitions="1.2*,1.2*,*,*,2*">
+                                                <TextBlock Text="字段名称" Classes="table-head"/>
+                                                <TextBlock Grid.Column="1" Text="字段类型" Classes="table-head"/>
+                                                <TextBlock Grid.Column="2" Text="允许为空" Classes="table-head"/>
+                                                <TextBlock Grid.Column="3" Text="默认值" Classes="table-head"/>
+                                                <TextBlock Grid.Column="4" Text="注释" Classes="table-head"/>
+                                            </Grid>
+                                        </Border>
+                                        <ItemsControl Grid.Row="1" ItemsSource="{Binding 表结构列表}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border BorderBrush="#EEF3F8" BorderThickness="0,0,0,1" Padding="10,8">
+                                                        <Grid ColumnDefinitions="1.2*,1.2*,*,*,2*">
+                                                            <TextBlock Text="{Binding 字段名称}" Classes="table-cell"/>
+                                                            <TextBlock Grid.Column="1" Text="{Binding 字段类型}" Classes="table-cell"/>
+                                                            <TextBlock Grid.Column="2" Text="{Binding 允许为空}" Classes="table-cell"/>
+                                                            <TextBlock Grid.Column="3" Text="{Binding 默认值}" Classes="table-cell"/>
+                                                            <TextBlock Grid.Column="4" Text="{Binding 注释}" Classes="table-cell"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="日志分析">
+                <Grid ColumnDefinitions="270,*" Margin="0,14,0,0">
+                    <Border Classes="panel" Padding="12" Margin="0,0,12,0">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <TextBlock Text="日志数据" Classes="subtitle" Margin="0,0,0,10"/>
+                            <TextBox Grid.Row="1" Watermark="请输入日志名称"/>
+                            <ListBox Grid.Row="2" Margin="0,10,0,0" SelectedIndex="0">
+                                <ListBoxItem Content="mysql-bin.000037"/>
+                                <ListBoxItem Content="mysql-bin.000038"/>
+                                <ListBoxItem Content="mysql-bin.000039"/>
+                            </ListBox>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Column="1" Classes="panel" Padding="12">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Button Classes="primary" Content="选择 binlog 文件"/>
+                                    <Button Classes="primary" Content="开始分析"/>
+                                    <Button Classes="secondary" Content="导出日志"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" Text="MySQL binlog 日志分析：5.6 ~ 8.0" Classes="muted" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Border Grid.Row="1" Background="{StaticResource 表头刷}" Padding="10,8">
+                                <Grid ColumnDefinitions="150,100,3*,150,160">
+                                    <TextBlock Text="写入时间" Classes="table-head"/>
+                                    <TextBlock Grid.Column="1" Text="类型" Classes="table-head"/>
+                                    <TextBlock Grid.Column="2" Text="操作内容" Classes="table-head"/>
+                                    <TextBlock Grid.Column="3" Text="所属文件" Classes="table-head"/>
+                                    <TextBlock Grid.Column="4" Text="偏移位置" Classes="table-head"/>
+                                </Grid>
+                            </Border>
+                            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding 日志记录列表}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="#EEF3F8" BorderThickness="0,0,0,1" Padding="10,9">
+                                                <Grid ColumnDefinitions="150,100,3*,150,160">
+                                                    <TextBlock Text="{Binding 写入时间}" Classes="table-cell"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding 类型}" Classes="table-cell"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding 操作内容}" Classes="table-cell" TextWrapping="Wrap"/>
+                                                    <TextBlock Grid.Column="3" Text="{Binding 所属文件}" Classes="table-cell"/>
+                                                    <TextBlock Grid.Column="4" Text="{Binding 偏移位置}" Classes="table-cell"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="服务与任务">
+                <Grid RowDefinitions="*,260" Margin="0,14,0,0">
+                    <Border Classes="panel" Padding="14" Margin="0,0,0,12">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,12">
+                                <TextBlock Text="服务管理" Classes="title"/>
+                                <TextBox Grid.Column="2" Width="230" Watermark="请输入记录名称"/>
+                            </Grid>
+                            <Border Grid.Row="1" Background="{StaticResource 表头刷}" Padding="10,8">
+                                <Grid ColumnDefinitions="60,1.4*,*,*,*,2*,Auto">
+                                    <TextBlock Text="序号" Classes="table-head"/>
+                                    <TextBlock Grid.Column="1" Text="记录名称" Classes="table-head"/>
+                                    <TextBlock Grid.Column="2" Text="服务类型" Classes="table-head"/>
+                                    <TextBlock Grid.Column="3" Text="数据库" Classes="table-head"/>
+                                    <TextBlock Grid.Column="4" Text="状态" Classes="table-head"/>
+                                    <TextBlock Grid.Column="5" Text="连接信息" Classes="table-head"/>
+                                    <TextBlock Grid.Column="6" Text="操作" Classes="table-head"/>
+                                </Grid>
+                            </Border>
+                            <ItemsControl Grid.Row="2" ItemsSource="{Binding 服务记录列表}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="#EEF3F8" BorderThickness="0,0,0,1" Padding="10,9">
+                                            <Grid ColumnDefinitions="60,1.4*,*,*,*,2*,Auto">
+                                                <TextBlock Text="{Binding 序号}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding 记录名称}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding 服务类型}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding 数据库}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="4" Text="{Binding 状态}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="5" Text="{Binding 连接信息}" Classes="table-cell"/>
+                                                <StackPanel Grid.Column="6" Orientation="Horizontal" Spacing="8">
+                                                    <Button Classes="text-action" Content="复制"/>
+                                                    <Button Classes="text-action" Content="停止"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="1" Classes="panel" Padding="14">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <TextBlock Text="任务列表" Classes="title" Margin="0,0,0,12"/>
+                            <Border Grid.Row="1" Background="{StaticResource 表头刷}" Padding="10,8">
+                                <Grid ColumnDefinitions="2*,*,*,*,*,Auto">
+                                    <TextBlock Text="任务名称" Classes="table-head"/>
+                                    <TextBlock Grid.Column="1" Text="开始时间" Classes="table-head"/>
+                                    <TextBlock Grid.Column="2" Text="耗时" Classes="table-head"/>
+                                    <TextBlock Grid.Column="3" Text="进度" Classes="table-head"/>
+                                    <TextBlock Grid.Column="4" Text="状态" Classes="table-head"/>
+                                    <TextBlock Grid.Column="5" Text="操作" Classes="table-head"/>
+                                </Grid>
+                            </Border>
+                            <ItemsControl Grid.Row="2" ItemsSource="{Binding 任务列表}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="#EEF3F8" BorderThickness="0,0,0,1" Padding="10,9">
+                                            <Grid ColumnDefinitions="2*,*,*,*,*,Auto">
+                                                <TextBlock Text="{Binding 任务名称}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding 开始时间}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding 耗时}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding 进度}" Classes="table-cell"/>
+                                                <TextBlock Grid.Column="4" Text="{Binding 状态}" Classes="table-cell"/>
+                                                <StackPanel Grid.Column="5" Orientation="Horizontal" Spacing="8">
+                                                    <Button Classes="text-action" Content="重试"/>
+                                                    <Button Classes="text-action" Content="取消"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="设置反馈">
+                <ScrollViewer Margin="0,14,0,0" VerticalScrollBarVisibility="Auto">
+                    <WrapPanel>
+                        <Border Classes="panel" Width="390" Padding="18" Margin="0,0,14,14">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+                                <TextBlock Text="设置" Classes="title" Margin="0,0,0,12"/>
+                                <StackPanel Grid.Row="1" Spacing="8">
+                                    <CheckBox Content="启动时检查软件更新" IsChecked="True"/>
+                                    <CheckBox Content="退出分析结果时自动保存历史记录" IsChecked="True"/>
+                                    <CheckBox Content="显示预处理任务进度详情" IsChecked="True"/>
+                                    <CheckBox Content="允许上传软件日志辅助排查"/>
+                                </StackPanel>
+                                <Border Grid.Row="2" Background="#F8FBFF" BorderBrush="{StaticResource 边框刷}" BorderThickness="1" CornerRadius="5" Padding="12" Margin="0,16,0,12">
+                                    <StackPanel Spacing="6">
+                                        <TextBlock Text="关于" Classes="subtitle"/>
+                                        <TextBlock Text="{Binding 软件版本}" Classes="muted"/>
+                                        <TextBlock Text="支持数据库文件离线读取、删除恢复、日志分析、数据导出。" Classes="muted" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+                                    <Button Classes="secondary" Content="软件日志"/>
+                                    <Button Classes="primary" Content="软件更新"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Border Classes="panel" Width="520" Padding="18" Margin="0,0,14,14">
+                            <Grid RowDefinitions="Auto,Auto,Auto">
+                                <TextBlock Text="问题反馈" Classes="title" Margin="0,0,0,12"/>
+                                <TextBlock Grid.Row="1"
+                                           Text="尊敬的用户，您好。如果您在使用软件过程中遇到问题或有建议，请通过以下渠道联系我们。"
+                                           Classes="muted"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,12"/>
+                                <Grid Grid.Row="2" RowDefinitions="Auto,Auto" ColumnDefinitions="*,*">
+                                    <Border Background="#F8FBFF" BorderBrush="{StaticResource 边框刷}" BorderThickness="1" CornerRadius="5" Padding="12" Margin="0,0,10,10">
+                                        <StackPanel Spacing="8">
+                                            <TextBlock Text="热线电话" Classes="subtitle"/>
+                                            <TextBlock Text="400-800-3721" Foreground="{StaticResource 主色刷}" FontWeight="SemiBold"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Grid.Column="1" Background="#F8FBFF" BorderBrush="{StaticResource 边框刷}" BorderThickness="1" CornerRadius="5" Padding="12" Margin="0,0,0,10">
+                                        <StackPanel Spacing="8">
+                                            <TextBlock Text="在线客服" Classes="subtitle"/>
+                                            <TextBlock Text="客服二维码区域" Classes="muted"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Grid.Row="1" Grid.ColumnSpan="2" Background="#F8FBFF" BorderBrush="{StaticResource 边框刷}" BorderThickness="1" CornerRadius="5" Padding="12">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <StackPanel Spacing="8">
+                                                <TextBlock Text="日志反馈" Classes="subtitle"/>
+                                                <TextBox Watermark="请详细描述您遇到的问题或建议"/>
+                                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                                    <TextBox Width="180" Watermark="电子邮箱"/>
+                                                    <TextBox Width="180" Watermark="联系电话"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <Button Grid.Column="1" Classes="primary" Content="提交日志" VerticalAlignment="Bottom"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+
+                        <Border Classes="panel" Width="460" Padding="18" Margin="0,0,14,14">
+                            <Grid RowDefinitions="Auto,Auto,Auto">
+                                <TextBlock Text="数据源详情" Classes="title" Margin="0,0,0,12"/>
+                                <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="90,*">
+                                    <TextBlock Text="记录名称" Classes="muted"/>
+                                    <TextBlock Grid.Column="1" Text="mysql" Classes="table-cell"/>
+                                    <TextBlock Grid.Row="1" Text="类型" Classes="muted" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="MySQL" Classes="table-cell" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="2" Text="数据源ID" Classes="muted" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="10086" Classes="table-cell" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="3" Text="数据目录" Classes="muted" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Text="D:\Desktop\DatabaseRecovery\mysql" Classes="table-cell" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="4" Text="创建时间" Classes="muted" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Text="2023-11-08 10:54:33" Classes="table-cell" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="5" Text="修改时间" Classes="muted" Margin="0,8,0,0"/>
+                                    <TextBlock Grid.Row="5" Grid.Column="1" Text="2023-11-08 10:54:36" Classes="table-cell" Margin="0,8,0,0"/>
+                                </Grid>
+                                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,14,0,0">
+                                    <Button Classes="secondary" Content="复制"/>
+                                    <Button Classes="primary" Content="打开目录"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </WrapPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,1 @@
+(function(){"use strict";var r=0,a=null;self.onmessage=function(l){if(console.log("event --- > ",l),l&&l.data==="clear"){clearInterval(a),a=null;return}if(l&&l.data==="end"){r=0,clearInterval(a),a=null;return}l&&l.data==="start"&&(a&&clearInterval(a),a=setInterval(function(){r++,self.postMessage(r)},1e3))}})();

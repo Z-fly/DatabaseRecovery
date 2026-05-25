@@ -1,0 +1,12 @@
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="design-iconfont">
+  <g clip-path="url(#5w0ty3xza__paint0_angular_701_7130_clip_path)" data-figma-skip-parse="true">
+    <foreignObject x="-1307.69" y="-1307.69" width="2615.38" height="2615.38" transform="translate(8 8) scale(.0065)">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="background:conic-gradient(from 90deg,rgba(9,142,254,.0001) 0deg,#098efe 360deg);height:100%;width:100%" opacity="1"/>
+    </foreignObject>
+  </g>
+  <defs>
+    <clipPath id="5w0ty3xza__paint0_angular_701_7130_clip_path">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 12.5C10.4853 12.5 12.5 10.4853 12.5 8C12.5 5.51472 10.4853 3.5 8 3.5C5.51472 3.5 3.5 5.51472 3.5 8C3.5 10.4853 5.51472 12.5 8 12.5ZM8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z"/>
+    </clipPath>
+  </defs>
+</svg>

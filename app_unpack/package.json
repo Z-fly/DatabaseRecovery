@@ -1,0 +1,37 @@
+{
+  "name": "DatabaseRecovery",
+  "private": true,
+  "version": "2.7.3",
+  "main": "dist/electron/main/index.js",
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint src/** --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@ag-grid-community/core@30.1.0": "patches/@ag-grid-community__core@30.1.0.patch",
+      "@ag-grid-community/client-side-row-model@30.1.0": "patches/@ag-grid-community__client-side-row-model@30.1.0.patch",
+      "@ag-grid-community/infinite-row-model@30.1.0": "patches/@ag-grid-community__infinite-row-model@30.1.0.patch",
+      "@ag-grid-community/vue3@30.1.0": "patches/@ag-grid-community__vue3@30.1.0.patch",
+      "@ag-grid-enterprise/clipboard@30.1.0": "patches/@ag-grid-enterprise__clipboard@30.1.0.patch",
+      "@ag-grid-enterprise/column-tool-panel@30.1.0": "patches/@ag-grid-enterprise__column-tool-panel@30.1.0.patch",
+      "@ag-grid-enterprise/core@30.1.0": "patches/@ag-grid-enterprise__core@30.1.0.patch",
+      "@ag-grid-enterprise/filter-tool-panel@30.1.0": "patches/@ag-grid-enterprise__filter-tool-panel@30.1.0.patch",
+      "@ag-grid-enterprise/master-detail@30.1.0": "patches/@ag-grid-enterprise__master-detail@30.1.0.patch",
+      "@ag-grid-enterprise/menu@30.1.0": "patches/@ag-grid-enterprise__menu@30.1.0.patch",
+      "@ag-grid-enterprise/range-selection@30.1.0": "patches/@ag-grid-enterprise__range-selection@30.1.0.patch",
+      "@ag-grid-enterprise/side-bar@30.1.0": "patches/@ag-grid-enterprise__side-bar@30.1.0.patch",
+      "ag-grid-community@30.1.0": "patches/ag-grid-community@30.1.0.patch"
+    }
+  },
+  "dependencies": {
+    "check-disk-space": "^3.4.0",
+    "json-bigint": "^1.0.0",
+    "vue-i18n": "^9.9.0",
+    "vue3-json-viewer": "^2.4.1"
+  }
+}
