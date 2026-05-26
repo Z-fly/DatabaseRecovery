@@ -180,7 +180,7 @@ Namespace Views
         添加处理日志("预处理任务正在排队，请稍等...", 5)
         Await Task.Delay(35)
         添加处理日志("正在读取 SQLite 数据文件...", 15)
-        Dim 表结果 = Await Task.Run(Function() 解析服务.读取表列表(界面模型.新建源文件路径))
+        Dim 表结果 = 解析服务.读取表列表(界面模型.新建源文件路径)
         添加处理日志($"共发现 {表结果.Count} 个数据表。", 25)
 
         Dim 已处理 As Integer = 0
@@ -191,10 +191,10 @@ Namespace Views
           Await Task.Delay(18)
         Next
 
-        Dim 数据源目录 = Await Task.Run(Function() 解析服务.创建结果目录(
+        Dim 数据源目录 = 解析服务.创建结果目录(
           界面模型.新建保存位置,
           界面模型.新建记录名称,
-          界面模型.新建源文件路径))
+          界面模型.新建源文件路径)
         添加处理日志($"已生成数据源目录：{数据源目录}", 90)
 
         Dim 当前时间 = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
