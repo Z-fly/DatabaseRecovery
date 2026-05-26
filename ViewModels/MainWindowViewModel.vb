@@ -37,6 +37,7 @@ Namespace ViewModels
     Private _筛选开始日期 As String = String.Empty
     Private _筛选结束日期 As String = String.Empty
     Private _筛选关键词 As String = String.Empty
+    Private _历史记录统计文本 As String = "显示前 0 条记录"
 
     Public Sub New()
       关系型数据库列表 = New ObservableCollection(Of 数据库类型项) From {
@@ -351,6 +352,15 @@ Namespace ViewModels
       End Get
       Set(value As String)
         Me.RaiseAndSetIfChanged(_筛选关键词, value)
+      End Set
+    End Property
+
+    Public Property 历史记录统计文本 As String
+      Get
+        Return _历史记录统计文本
+      End Get
+      Set(value As String)
+        Me.RaiseAndSetIfChanged(_历史记录统计文本, value)
       End Set
     End Property
 

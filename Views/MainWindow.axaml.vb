@@ -51,37 +51,64 @@ Namespace Views
     End Sub
 
     Private Sub 刷新历史记录(Optional 应用筛选 As Boolean = False)
-      Dim 记录集合 As IEnumerable(Of 历史记录项) = 案件服务.加载历史记录()
+      Dim 原始记录列表 = 案件服务.加载历史记录().ToList()
+      Dim 记录集合 As IEnumerable(Of 历史记录项) = 原始记录列表
+
       If 应用筛选 Then
         Dim 开始时间 As DateTime
         Dim 结束时间 As DateTime
         Dim 有开始时间 = Not String.IsNullOrWhiteSpace(界面模型.筛选开始日期)
         Dim 有结束时间 = Not String.IsNullOrWhiteSpace(界面模型.筛选结束日期)
+        Dim 关键字 = 界面模型.筛选关键词?.Trim()
+
         If 有开始时间 AndAlso Not DateTime.TryParse(界面模型.筛选开始日期, 开始时间) Then
-          界面模型.操作提示 = "开始日期格式无效。"
+          界面模型.操作提示 = "开始日期格式无效，请输入有效日期。"
           Return
         End If
         If 有结束时间 AndAlso Not DateTime.TryParse(界面模型.筛选结束日期, 结束时间) Then
-          界面模型.操作提示 = "结束日期格式无效。"
+          界面模型.操作提示 = "结束日期格式无效，请输入有效日期。"
           Return
         End If
         If 有结束时间 AndAlso 结束时间.TimeOfDay = TimeSpan.Zero Then
           结束时间 = 结束时间.Date.AddDays(1).AddTicks(-1)
         End If
+
         记录集合 = 记录集合.Where(
           Function(记录)
-            Dim 记录时间 As DateTime
-            Dim 名称匹配 = String.IsNullOrWhiteSpace(界面模型.筛选关键词) OrElse
-              记录.记录名称.Contains(界面模型.筛选关键词, StringComparison.OrdinalIgnoreCase)
-            If Not 名称匹配 OrElse Not DateTime.TryParse(记录.创建时间, 记录时间) Then Return 名称匹配 AndAlso Not (有开始时间 OrElse 有结束时间)
-            Return (Not 有开始时间 OrElse 记录时间 >= 开始时间) AndAlso
-              (Not 有结束时间 OrElse 记录时间 <= 结束时间)
+            Dim 名称匹配 = String.IsNullOrWhiteSpace(关键字) OrElse
+              记录.记录名称.Contains(关键字, StringComparison.OrdinalIgnoreCase)
+
+            Dim 创建时间 As DateTime
+            Dim 修改时间 As DateTime
+            Dim 创建时间有效 = DateTime.TryParse(记录.创建时间, 创建时间)
+            Dim 修改时间有效 = DateTime.TryParse(记录.修改时间, 修改时间)
+
+            Dim 日期匹配 As Boolean = Not (有开始时间 OrElse 有结束时间)
+            If 有开始时间 OrElse 有结束时间 Then
+              If 创建时间有效 Then
+                日期匹配 = 日期匹配 OrElse ((Not 有开始时间 OrElse 创建时间 >= 开始时间) AndAlso (Not 有结束时间 OrElse 创建时间 <= 结束时间))
+              End If
+              If 修改时间有效 Then
+                日期匹配 = 日期匹配 OrElse ((Not 有开始时间 OrElse 修改时间 >= 开始时间) AndAlso (Not 有结束时间 OrElse 修改时间 <= 结束时间))
+              End If
+            End If
+
+            Return 名称匹配 AndAlso 日期匹配
           End Function)
       End If
+
+      Dim 结果列表 = 记录集合.ToList()
       界面模型.历史记录列表.Clear()
-      For Each 记录 In 记录集合
+      For Each 记录 In 结果列表
         界面模型.历史记录列表.Add(记录)
       Next
+
+      界面模型.历史记录统计文本 = $"显示前 {结果列表.Count} 条记录（总计 {原始记录列表.Count} 条）"
+      If 应用筛选 Then
+        界面模型.操作提示 = If(结果列表.Count = 0, "未找到匹配的历史记录。", "筛选完成。")
+      Else
+        界面模型.操作提示 = String.Empty
+      End If
     End Sub
 
     Private Sub 搜索历史记录_Click(发送者 As Object, 参数 As RoutedEventArgs)

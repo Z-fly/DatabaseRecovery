@@ -184,7 +184,7 @@
                             <TextBlock Text="历史记录" Classes="title" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1"
                                        Margin="14,0,0,0"
-                                       Text="{Binding 操作提示}"
+                                       Text="{Binding 历史记录统计文本}"
                                        Foreground="{StaticResource 主色刷}"
                                        VerticalAlignment="Center"/>
                             <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
