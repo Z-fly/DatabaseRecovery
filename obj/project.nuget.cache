@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j1r/UVEqLpw=",
+  "dgSpecHash": "38uN/xtPzmQ=",
   "success": true,
   "projectFilePath": "/Users/z/Desktop/DatabaseRecovery/DatabaseRecovery/DatabaseRecovery.vbproj",
   "expectedPackageFiles": [
@@ -29,6 +29,8 @@
     "/Users/z/.nuget/packages/harfbuzzsharp.nativeassets.webassembly/8.3.1.3/harfbuzzsharp.nativeassets.webassembly.8.3.1.3.nupkg.sha512",
     "/Users/z/.nuget/packages/harfbuzzsharp.nativeassets.win32/8.3.1.3/harfbuzzsharp.nativeassets.win32.8.3.1.3.nupkg.sha512",
     "/Users/z/.nuget/packages/microcom.runtime/0.11.4/microcom.runtime.0.11.4.nupkg.sha512",
+    "/Users/z/.nuget/packages/microsoft.data.sqlite/10.0.8/microsoft.data.sqlite.10.0.8.nupkg.sha512",
+    "/Users/z/.nuget/packages/microsoft.data.sqlite.core/10.0.8/microsoft.data.sqlite.core.10.0.8.nupkg.sha512",
     "/Users/z/.nuget/packages/reactiveui/20.1.1/reactiveui.20.1.1.nupkg.sha512",
     "/Users/z/.nuget/packages/skiasharp/3.119.4-preview.1.1/skiasharp.3.119.4-preview.1.1.nupkg.sha512",
     "/Users/z/.nuget/packages/skiasharp.nativeassets.linux/3.119.4-preview.1.1/skiasharp.nativeassets.linux.3.119.4-preview.1.1.nupkg.sha512",
@@ -36,6 +38,10 @@
     "/Users/z/.nuget/packages/skiasharp.nativeassets.webassembly/3.119.4-preview.1.1/skiasharp.nativeassets.webassembly.3.119.4-preview.1.1.nupkg.sha512",
     "/Users/z/.nuget/packages/skiasharp.nativeassets.win32/3.119.4-preview.1.1/skiasharp.nativeassets.win32.3.119.4-preview.1.1.nupkg.sha512",
     "/Users/z/.nuget/packages/splat/15.1.1/splat.15.1.1.nupkg.sha512",
+    "/Users/z/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.11/sqlitepclraw.bundle_e_sqlite3.2.1.11.nupkg.sha512",
+    "/Users/z/.nuget/packages/sqlitepclraw.core/2.1.11/sqlitepclraw.core.2.1.11.nupkg.sha512",
+    "/Users/z/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/sqlitepclraw.lib.e_sqlite3.2.1.11.nupkg.sha512",
+    "/Users/z/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.11/sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512",
     "/Users/z/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "/Users/z/.nuget/packages/system.reactive/6.0.1/system.reactive.6.0.1.nupkg.sha512",
     "/Users/z/.nuget/packages/tmds.dbus.protocol/0.92.0/tmds.dbus.protocol.0.92.0.nupkg.sha512"

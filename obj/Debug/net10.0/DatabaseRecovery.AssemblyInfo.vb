@@ -15,7 +15,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("DatabaseRecovery"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+336f88bc71cd9003c3f512019ebfab75d6e57bca"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("DatabaseRecovery"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("DatabaseRecovery"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")> 
